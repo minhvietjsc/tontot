@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+	<title>Nimble Ads Application V1.0</title>
+ 	<meta name="description" content="Nimble Ads Application is Premium Classified Php ( Laravel ) Script with fully responsive Material & Classic design. Built to be beautiful, fast and powerful. One click setup User can easily set up this theme and easy to use and customized.">
+	<meta name="author" content="Ranksol">
+	<meta name="copyright" content="Ranksol">
+	<meta name="generator" content="Documenter v2.0 http://rxa.li/documenter">
+	<meta name="date" content="2018-05-08T10:31:37+02:00">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link href="assets/js/google-code-prettify/prettify.css" rel="stylesheet">
+    <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="assets/css/documenter_style.css" rel="stylesheet">
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+
+	
+	<style>
+		html, body{
+			background-color: #f7f6f6;
+			color:#383838;
+		}
+		h1,h2,h3,h4,h5,h6{color:#383838;}
+		section table{background-color:#FFFFFF;}
+		::-moz-selection{background:#444444;color:#DDDDDD;}
+		::selection{background:#444444;color:#DDDDDD;}
+		a.brand{background-image:url(assets/images/image_11.png);}
+		a, a:hover, a:active{color:#0000FF;}
+		hr{border-top:1px solid #EBEBEB;border-bottom:1px solid #FFFFFF;}
+		div.navbar-inner, .navbar .nav li ul{background:#DDDDDD;color:#222222;}
+		a.btn-navbar{background:#DDDDDD;color:#222222;}
+		.navbar .nav li a{color:#222222;text-shadow:1px 1px 0px #EEEEEE;}
+		.navbar .nav li a:hover, .navbar .nav li.active a{text-shadow:none;}
+		div.navbar-inner ul{}
+		.marketing-byline{color:black;}
+		.navbar .nav > li a{color:#444444;}
+		.navbar .nav > li a:hover, a.btn-navbar:hover{background:#444444;color:#DDDDDD;}
+		.navbar .nav .active > a, .navbar .nav .active > a:hover, a.btn-navbar:active{background-color:#444444;color:#DDDDDD;}
+		.navbar .nav li ul li a:hover{background:#444444;color:#DDDDDD;}
+		.navbar .nav li ul li a:active{background:#444444;color:#DDDDDD;}
+		.btn-primary {
+			  background-image: -moz-linear-gradient(top, #0088CC, #0044CC);
+			  background-image: -ms-linear-gradient(top, #0088CC, #0044CC);
+			  background-image: -webkit-gradient(linear, 0 0, 0 0088CC%, from(#DDDDDD), to(#0044CC));
+			  background-image: -webkit-linear-gradient(top, #0088CC, #0044CC);
+			  background-image: -o-linear-gradient(top, #0088CC, #0044CC);
+			  background-image: linear-gradient(top, #0088CC, #0044CC);
+			  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0088CC', endColorstr='#0044CC', GradientType=0);
+			  border-color: #0044CC #0044CC #bfbfbf;
+			  color:#FFFFFF;
+		}
+		.btn-primary:hover,
+		.btn-primary:active,
+		.btn-primary.active,
+		.btn-primary.disabled,
+		.btn-primary[disabled] {
+		  background-color: #0044CC;
+		}
+		#documenter_copyright{display:block !important;visibility:visible !important;}
+		img{
+			width: 100%!important;
+		}
+		.hero-unit{ background-color: #d4d4d4!important;}
+	</style>
+	
+	
+	
+    </head>
+    
+<body class="documenter-project-nimble-ads-application-v10" data-spy="scroll" id="top">
+
+<!-- Documentation Navbar -->
+
+<div class="navbar navbar-fixed-top">
+	<div class="navbar-inner">
+		<div class="container"> 
+			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a> 
+			<a class="brand" href="#">Nimble Ads Application V1.0</a>
+			<div class="nav-collapse">
+			<ul class="nav">
+					
+			<li><a href="#database_creation" title="Database Creation">Database Creation</a></li>
+			<li><a href="#cron" title="Database Creation">Create Cron Job</a></li>
+			<li><a href="#installation" title="Installation">Installation</a></li>
+			<li><a href="#login" title="Login">Login</a></li>
+			<li><a href="#sign_up" title="Sign up">Sign up</a></li>
+			<li><a href="#forget_password" title="Forget Password">Forget Password</a></li>
+			<li><a href="#admin_dashboard" title="Admin Dashboard">Admin Dashboard</a></li>
+			<li><a href="#mail_settings" title="Mail Settings">Mail Settings</a></li>
+			<li><a href="#application_settings" title="Application Settings">Application Settings</a></li>
+			<li><a href="#users_management" title=" Users Management"> Users Management</a></li>
+			<li><a href="#ads_category" title="Ads Category">Ads Category</a></li>
+			<li><a href="#manage_categories" title="Manage Categories">Manage Categories</a></li>
+			<li><a href="#add_groups" title="Add Groups">Add Groups</a></li>
+			<li><a href="#group_list_management" title="Group List / Management">Group List / Management</a></li>
+			<li><a href="#custom_fields" title="Custom Fields">Custom Fields</a></li>
+			<li><a href="#add_region" title="Add Region">Add Region</a></li>
+			<li><a href="#add_city" title="Add City">Add City</a></li>
+			<li><a href="#admin_profile" title="Admin Profile">Admin Profile</a></li>
+			<li><a href="#front_end_home_page" title="Front-end Home Page">Front-end Home Page</a></li>
+			<li><a href="#ad_listings_searched_result_listings" title="Ad Listings./ Searched result listings">Ad Listings./ Searched result listings</a></li>
+			<li><a href="#create_ad" title="Create Ad">Create Ad</a></li>
+			<li><a href="#ad_s_detail" title="Ad's Detail">Ad's Detail</a></li>
+			<li><a href="#user_s_ads" title="User's Ads">User's Ads</a></li>
+			<li><a href="#user_dashboard" title="User Dashboard">User Dashboard</a></li>
+			<li><a href="#active_ads" title="Active Ads">Active Ads</a></li>
+			<li><a href="#in_active_ads" title="In-active Ads">In-active Ads</a></li>
+			<li><a href="#pending_ads" title="Pending Ads">Pending Ads</a></li>
+			<li><a href="#message_system" title="Message System">Message System</a></li>
+			<li><a href="#chat_system" title="Chat System">Chat System</a></li>
+			<li><a href="#map_listings" title="Map Listings">Map Listings</a></li>
+			<li><a href="#custom_pages" title="Custom Pages">Custom Pages</a></li>
+			<li><a href="#featured_ads" title="Featured Ads">Featured Ads</a></li>
+			<li><a href="#mobile_verification" title="Featured Ads">Mobile Verification</a></li>
+
+			</ul>
+			</div>
+		</div>
+	</div>
+</div> <!-- End of Navbar -->
+
+<!-- Main Container Beginning -->			
+			
+<div class="container" id="documenter_content">
+    
+	<div id="documenter-cover">
+	<div class="masthead">
+	    <h1>Nimble Ads Application V1.0</h1>
+	    <p>Nimble Ads Application is Premium Classified Php ( Laravel ) Script with fully responsive Material & Classic design. Built to be beautiful, fast and powerful. One click setup User can easily set up this theme and easy to use and customized.</p>
+	    <ul class="marketing-byline">
+			<li>created: 05/08/2018</li>
+			
+			<li>By: <a href="http://ranksol.com" target="_blank">Ranksol</a></li>
+
+		</ul>
+	    <p class="download-info">
+			
+		</p>
+		
+	</div> <!-- masthead -->
+	
+   <div id="intro">
+	   <p class="highlight hero-unit">Nimble Classified Ads Script – PHP And Laravel Geo Classified Advertisement CMS is created to help you build a 100% responsive and exclusive classified website based on latest version of the most popular PHP framework Laravel.
+	   <br>
+	  It’s one of the must buy ads scripts which you can’t even resist, If you want to have a feature rich script that have got everything and includes more than 50 features which you need to build a unique classified marketplace website. All in one great looking package, Nimble classified ads script is specifically desined and developed by keeping in view the requirements and necessities of all businesses. Nimble classified ads script has very modern, unique and eyecatching design which makes it stand out at the web and is one of the most top rated classified scripts available at codecanyon. It’s great looking design and modern layout will make you fell in love with it. 100% and unique layout is reliable and user friendly, not just that its layout and design will help give your classfieds websites and it’s listings a professional appearance. With Nimble ads classified script you can make your classifieds ads national, international or even for some specified for some countries.
+	</p>
+   </div> <!-- intro -->
+   
+	</div>
+      
+  <section id="database_creation">
+	<div class="page-header"><h3>Database Creation</h3><hr class="notop"></div>
+<p>
+	<strong>Step-1</strong></p>
+<p>
+	<img alt="" src="assets/images/image_6.png"></p>
+<p>
+	<strong>Step-2</strong></p>
+<p>
+	<img alt="" src="assets/images/image_7.png"></p>
+<p>
+	<strong>Step-3</strong></p>
+<p>
+	<img alt="" src="assets/images/image_8.png"></p>
+<p>
+	<strong>Step-4</strong></p>
+<p>
+	<img alt="" src="assets/images/image_9.png"></p>
+<p>
+	<strong>Step-5</strong></p>
+<p>
+	<img alt="" src="assets/images/image_10.png" style="width: 770px; height: 399px;"></p>
+</section>
+	
+	<section id="cron">
+		<div class="page-header"><h3>Create Cron Job</h3><hr class="notop"></div>
+		<p>
+			<span style="font-family: Consolas, &quot;Lucida Console&quot;, &quot;Courier New&quot;, monospace; white-space: pre-wrap;">Cron jobs are scheduled tasks that the system runs at predefined times or intervals. we need to setup cron jobs to inactive ads after 30 days. You have to setup following cron to make application run successfully. </span>
+		</p>		
+
+		<strong>
+			<h4>Step-1</h4>
+		</strong>
+		<p>To set crones follow these steps.</p>
+		<img src="assets/images/image_cron.png" alt="">
+
+		<strong>			
+			<h4>Step-2</h4>
+		</strong>		
+		<img src="assets/images/cron_setup.png" alt="">
+		<br>
+		<hr>
+<table class="table table-striped responsive-table" id="cron_jobs_table">
+			<thead>
+			<tr>
+				<th>
+					Minute</th>
+				<th>
+					Hour</th>
+				<th>
+					Day</th>
+				<th>
+					Month</th>
+				<th>
+					Weekday</th>
+				<th>
+					Command</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr>
+				<td>0</td>
+				<td>0</td>
+				<td>*</td>
+				<td>*</td>
+				<td>*</td>
+				<td><code>curl http://yourdomain.com/ads_cron</code></td>
+			</tr>
+			</tbody>
+		</table>
+			
+	</section>
+	
+<section id="installation">
+	<div class="page-header"><h3>Installation</h3><hr class="notop"></div>
+<p>
+	<span style="font-family: Consolas, &quot;Lucida Console&quot;, &quot;Courier New&quot;, monospace; white-space: pre-wrap;">Upload </span>Nimble Ads Application&#39;s&nbsp;<span style="font-family: Consolas, &quot;Lucida Console&quot;, &quot;Courier New&quot;, monospace; white-space: pre-wrap;">downloaded files to your server and run your website URL.</span></p>
+<p>
+	<span style="font-family: Consolas, &quot;Lucida Console&quot;, &quot;Courier New&quot;, monospace; white-space: pre-wrap;">To install application follow step by step instructions.</span></p>
+<p>
+	<strong><font face="Consolas, Lucida Console, Courier New, monospace"><span style="white-space: pre-wrap;">Step-1</span></font></strong></p>
+<p>
+	<span style="font-family: Consolas, &quot;Lucida Console&quot;, &quot;Courier New&quot;, monospace; white-space: pre-wrap;"><img alt="" src="assets/images/image_1.png" style="width: 1023px; height: 635px;"></span></p>
+<p>
+	<span style="font-family: Consolas, &quot;Lucida Console&quot;, &quot;Courier New&quot;, monospace; white-space: pre-wrap;">Step-2</span></p>
+<p>
+	<span style="font-family: Consolas, &quot;Lucida Console&quot;, &quot;Courier New&quot;, monospace; white-space: pre-wrap;"><img alt="" src="assets/images/image_2.png" style="width: 1023px; height: 636px;"></span></p>
+<p>
+	<span style="font-family: Consolas, &quot;Lucida Console&quot;, &quot;Courier New&quot;, monospace; white-space: pre-wrap;">Step-3</span></p>
+<p>
+	<span style="font-family: Consolas, &quot;Lucida Console&quot;, &quot;Courier New&quot;, monospace; white-space: pre-wrap;"><img alt="" src="assets/images/image_3.png" style="width: 1023px; height: 636px;"></span></p>
+<p>
+	<span style="font-family: Consolas, &quot;Lucida Console&quot;, &quot;Courier New&quot;, monospace; white-space: pre-wrap;">Step-4</span></p>
+<p>
+	<span style="font-family: Consolas, &quot;Lucida Console&quot;, &quot;Courier New&quot;, monospace; white-space: pre-wrap;"><img alt="" src="assets/images/image_4.png" style="width: 1023px; height: 637px;"></span></p>
+<p>
+	Step-5</p>
+<p>
+	<img alt="" src="assets/images/image_5.png"  ></p>
+<p>
+	&nbsp;</p>
+</section>
+<section id="login">
+	<div class="page-header"><h3>Login</h3><hr class="notop"></div>
+<p>
+	<span style="font-family: &quot;Helvetica Neue&quot;, Arial, Helvetica, sans-serif; font-size: 12.8px;">Log in with your provided admin account information during installation.</span></p>
+<p>
+	<img alt="" src="assets/images/image_33.png" width="100%"></p>
+</section>
+
+<section id="logout">
+	<div class="page-header"><h3>Logout</h3><hr class="notop"></div>
+<p>
+	<span style="font-family: &quot;Helvetica Neue&quot;, Arial, Helvetica, sans-serif; font-size: 12.8px;">
+		Logout - It is important that if you are using an office computer or a public computer that you log out of your account or your account profile – email,
+		password and other private information such as all customer information would be at risk.
+	</span>
+</p>
+
+</section>
+<section id="sign_up">
+	<div class="page-header"><h3>Sign up</h3><hr class="notop"></div>
+<p>
+	<span style="font-family: &quot;Helvetica Neue&quot;, Arial, Helvetica, sans-serif; font-size: 12.8px;">Trough Sign up page guest users can be a part of your application, can sell products.</span></p>
+<p>
+	<img alt="" src="assets/images/image_37.png" width="100%"></p>
+</section>
+<section id="forget_password">
+	<div class="page-header"><h3>Forget Password</h3><hr class="notop"></div>
+<p>
+	<span style="font-family: &quot;Helvetica Neue&quot;, Arial, Helvetica, sans-serif; font-size: 12.8px;">The user can recover the password by providing your valid email.</span></p>
+<p>
+	<span style="font-family: &quot;Helvetica Neue&quot;, Arial, Helvetica, sans-serif; font-size: 12.8px;">on success, an email is sent with users login credentials.</span></p>
+<p>
+	<img alt="" src="assets/images/image_28.png" width="100%"></p>
+</section>
+<section id="admin_dashboard">
+	<div class="page-header"><h3>Admin Dashboard</h3><hr class="notop"></div>
+<p>
+	<span style="font-family: &quot;Helvetica Neue&quot;, Arial, Helvetica, sans-serif; font-size: 12.8px;">After login, you will be redirected to application dashboard where you can see stats about your Email campaigns, users, email subjects, most open and click time, total open and clicks of emails. It will show you overall stats of the application.</span></p>
+<p>
+	<img alt="" src="assets/images/image_26.png" width="100%"></p>
+</section>
+<section id="mail_settings">
+	<div class="page-header"><h3>Mail Settings</h3><hr class="notop"></div>
+<p>
+	<span style="font-family: &quot;Helvetica Neue&quot;, Arial, Helvetica, sans-serif; font-size: 12.8px;">please config your mail settings before using application. Add your mail settings here.</span></p>
+<p>
+	<img alt="" src="assets/images/image_27.png" width="100%"></p>
+</section>
+<section id="application_settings">
+	<div class="page-header"><h3>Application Settings</h3><hr class="notop"></div>
+<p>
+	<span style="font-family: &quot;Helvetica Neue&quot;, Arial, Helvetica, sans-serif; font-size: 12.8px;">Admin can change the logo, currency symbol, header, footer, body backgrounds, footer text. top menu/navigation background.</span></p>
+<p>
+	<span style="font-family: &quot;Helvetica Neue&quot;, Arial, Helvetica, sans-serif; font-size: 12.8px;">admin can change currency options.</span></p>
+<p>
+	<span style="font-family: &quot;Helvetica Neue&quot;, Arial, Helvetica, sans-serif; font-size: 12.8px;">Live chat can be on or off.</span></p>
+<p>
+	<img alt="" src="assets/images/image_42.png" width="100%"></p>
+</section>
+<section id="users_management">
+	<div class="page-header"><h3> Users Management</h3><hr class="notop"></div>
+<p>
+	<span style="font-family: &quot;Helvetica Neue&quot;, Arial, Helvetica, sans-serif; font-size: 12.8px;">Applications users are listed on this page, Admin can add new, edit and delete users. also can check their stats.</span></p>
+<p>
+	Admin can also add/ invite new users.</p>
+<p>
+	<img alt="" src="assets/images/image_41.png" width="100%"></p>
+</section>
+<section id="ads_category">
+	<div class="page-header"><h3>Ads Category</h3><hr class="notop"></div>
+<p style="margin: 0px 0px 25px; padding: 0px; border: 0px; font-size: 12.8px; font-family: &quot;Helvetica Neue&quot;, Arial, Helvetica, sans-serif; vertical-align: baseline; line-height: 1.65em;">
+	Admin can add unlimited categories for example</p>
+<ul style="margin: 0px 1.5em 1.5em 3.5em; padding-right: 0px; padding-left: 0px; border: 0px; font-size: 12.8px; font-family: &quot;Helvetica Neue&quot;, Arial, Helvetica, sans-serif; vertical-align: baseline;">
+	<li style="margin: 0px; padding: 0px; border: 0px; font-weight: inherit; font-style: inherit; font-size: 12.8px; font-family: inherit; vertical-align: baseline;">
+		<strong>Vehicle</strong>
+		<ul style="margin: 0px 1.5em 1.5em 3.5em; padding-right: 0px; padding-left: 0px; border: 0px; font-weight: inherit; font-style: inherit; font-size: 12.8px; font-family: inherit; vertical-align: baseline; list-style-type: disc;">
+			<li style="margin: 0px; padding: 0px; border: 0px; font-weight: inherit; font-style: inherit; font-size: 12.8px; font-family: inherit; vertical-align: baseline;">
+				<strong>Cars</strong>
+				<ul style="margin: 0px 1.5em 1.5em 3.5em; padding-right: 0px; padding-left: 0px; border: 0px; font-weight: inherit; font-style: inherit; font-size: 12.8px; font-family: inherit; vertical-align: baseline; list-style-type: disc;">
+					<li style="margin: 0px; padding: 0px; border: 0px; font-weight: inherit; font-style: inherit; font-size: 12.8px; font-family: inherit; vertical-align: baseline;">
+						<strong>BMW</strong>
+						<ul style="margin: 0px 1.5em 1.5em 3.5em; padding-right: 0px; padding-left: 0px; border: 0px; font-weight: inherit; font-style: inherit; font-size: 12.8px; font-family: inherit; vertical-align: baseline; list-style-type: disc;">
+							<li style="margin: 0px; padding: 0px; border: 0px; font-weight: inherit; font-style: inherit; font-size: 12.8px; font-family: inherit; vertical-align: baseline;">
+								M3</li>
+							<li style="margin: 0px; padding: 0px; border: 0px; font-weight: inherit; font-style: inherit; font-size: 12.8px; font-family: inherit; vertical-align: baseline;">
+								X3</li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+			<li style="margin: 0px; padding: 0px; border: 0px; font-weight: inherit; font-style: inherit; font-size: 12.8px; font-family: inherit; vertical-align: baseline;">
+				<strong>Trucks</strong>
+				<ul style="margin: 0px 1.5em 1.5em 3.5em; padding-right: 0px; padding-left: 0px; border: 0px; font-weight: inherit; font-style: inherit; font-size: 12.8px; font-family: inherit; vertical-align: baseline; list-style-type: disc;">
+					<li style="margin: 0px; padding: 0px; border: 0px; font-weight: inherit; font-style: inherit; font-size: 12.8px; font-family: inherit; vertical-align: baseline;">
+						Minivan</li>
+					<li style="margin: 0px; padding: 0px; border: 0px; font-weight: inherit; font-style: inherit; font-size: 12.8px; font-family: inherit; vertical-align: baseline;">
+						Pickup truck</li>
+					<li style="margin: 0px; padding: 0px; border: 0px; font-weight: inherit; font-style: inherit; font-size: 12.8px; font-family: inherit; vertical-align: baseline;">
+						Panel truck</li>
+				</ul>
+			</li>
+		</ul>
+	</li>
+</ul>
+<p style="margin: 0px; padding: 0px; border: 0px; font-weight: inherit; font-style: inherit; font-size: 12.8px; font-family: inherit; vertical-align: baseline;margin: 0px; padding: 0px; border: 0px; font-weight: inherit; font-style: inherit; font-size: 12.8px; font-family: inherit; vertical-align: baseline;margin: 0px; padding: 0px; border: 0px; font-weight: inherit; font-style: inherit; font-size: 12.8px; font-family: inherit; vertical-align: baseline;">
+	<img alt="" src="assets/images/image_13.png" width="100%"></p>
+</section>
+<section id="manage_categories">
+	<div class="page-header"><h3>Manage Categories</h3><hr class="notop"></div>
+<p>
+	<span style="font-family: &quot;Helvetica Neue&quot;, Arial, Helvetica, sans-serif; font-size: 12.8px;">The page shows all categories of application, admin can edit &amp; delete categories.</span></p>
+<p>
+	<img alt="" src="assets/images/image_18.png" width="100%"></p>
+</section>
+<section id="add_groups">
+	<div class="page-header"><h3>Add Groups</h3><hr class="notop"></div>
+<p>
+	Admin can add groups to categories.&nbsp;<span style="font-family: &quot;Helvetica Neue&quot;, Arial, Helvetica, sans-serif; font-size: 12.8px;">Groups enhance the category&#39;s functionality.</span></p>
+<p>
+	<img alt="" src="assets/images/image_15.png" width="100%"></p>
+<p>
+	<strong style="font-family: &quot;Helvetica Neue&quot;, Arial, Helvetica, sans-serif; font-size: 12.8px;">view Group&#39;s example</strong></p>
+<p>
+	<img alt="" src="assets/images/image_29.png" width="100%"></p>
+</section>
+<section id="group_list_management">
+	<div class="page-header"><h3>Group List / Management</h3><hr class="notop"></div>
+<p>
+	<span style="font-family: &quot;Helvetica Neue&quot;, Arial, Helvetica, sans-serif; font-size: 12.8px;">Group list shows all your groups and their fields.. admin can add, edit &amp; delete fields.</span></p>
+<p>
+	<img alt="" src="assets/images/image_30.png" width="100%"></p>
+</section>
+<section id="custom_fields">
+	<div class="page-header"><h3>Custom Fields</h3><hr class="notop"></div>
+<p style="margin: 0px 0px 25px; padding: 0px; border: 0px; font-size: 12.8px; font-family: &quot;Helvetica Neue&quot;, Arial, Helvetica, sans-serif; vertical-align: baseline; line-height: 1.65em;">
+	Admin can set custom fields for any category.</p>
+<p style="margin: 0px 0px 25px; padding: 0px; border: 0px; font-size: 12.8px; font-family: &quot;Helvetica Neue&quot;, Arial, Helvetica, sans-serif; vertical-align: baseline; line-height: 1.65em;">
+	For example, custom fields of a&nbsp;<strong>Jobs&nbsp;</strong>category are.</p>
+<ul style="margin: 0px 1.5em 1.5em 3.5em; padding-right: 0px; padding-left: 0px; border: 0px; font-size: 12.8px; font-family: &quot;Helvetica Neue&quot;, Arial, Helvetica, sans-serif; vertical-align: baseline;">
+	<li style="margin: 0px; padding: 0px; border: 0px; font-weight: inherit; font-style: inherit; font-size: 12.8px; font-family: inherit; vertical-align: baseline;">
+		First Name</li>
+	<li style="margin: 0px; padding: 0px; border: 0px; font-weight: inherit; font-style: inherit; font-size: 12.8px; font-family: inherit; vertical-align: baseline;">
+		Last Name</li>
+	<li style="margin: 0px; padding: 0px; border: 0px; font-weight: inherit; font-style: inherit; font-size: 12.8px; font-family: inherit; vertical-align: baseline;">
+		Father Name</li>
+	<li style="margin: 0px; padding: 0px; border: 0px; font-weight: inherit; font-style: inherit; font-size: 12.8px; font-family: inherit; vertical-align: baseline;">
+		Profile Picture</li>
+	<li style="margin: 0px; padding: 0px; border: 0px; font-weight: inherit; font-style: inherit; font-size: 12.8px; font-family: inherit; vertical-align: baseline;">
+		Email</li>
+	<li style="margin: 0px; padding: 0px; border: 0px; font-weight: inherit; font-style: inherit; font-size: 12.8px; font-family: inherit; vertical-align: baseline;">
+		Phone</li>
+	<li style="margin: 0px; padding: 0px; border: 0px; font-weight: inherit; font-style: inherit; font-size: 12.8px; font-family: inherit; vertical-align: baseline;">
+		Id card Number</li>
+	<li style="margin: 0px; padding: 0px; border: 0px; font-weight: inherit; font-style: inherit; font-size: 12.8px; font-family: inherit; vertical-align: baseline;">
+		Education</li>
+	<li style="margin: 0px; padding: 0px; border: 0px; font-weight: inherit; font-style: inherit; font-size: 12.8px; font-family: inherit; vertical-align: baseline;">
+		Last Degree</li>
+	<li style="margin: 0px; padding: 0px; border: 0px; font-weight: inherit; font-style: inherit; font-size: 12.8px; font-family: inherit; vertical-align: baseline;">
+		About</li>
+	<li style="margin: 0px; padding: 0px; border: 0px; font-weight: inherit; font-style: inherit; font-size: 12.8px; font-family: inherit; vertical-align: baseline;">
+		Experience</li>
+</ul>
+<p style="margin: 0px 0px 25px; padding: 0px; border: 0px; font-size: 12.8px; font-family: &quot;Helvetica Neue&quot;, Arial, Helvetica, sans-serif; vertical-align: baseline; line-height: 1.65em;">
+	These custom fields can be set for different categories.</p>
+<p style="margin: 0px 0px 25px; padding: 0px; border: 0px; font-size: 12.8px; font-family: &quot;Helvetica Neue&quot;, Arial, Helvetica, sans-serif; vertical-align: baseline; line-height: 1.65em;">
+	<img alt="" src="assets/images/image_25.png" width="100%"></p>
+</section>
+<section id="add_region">
+	<div class="page-header"><h3>Add Region</h3><hr class="notop"></div>
+<p>
+	<span style="font-family: &quot;Helvetica Neue&quot;, Arial, Helvetica, sans-serif; font-size: 12.8px;">Admin needs to add Regions, the region can be edit, delete.</span></p>
+<p>
+	<img alt="" src="assets/images/image_16.png" width="100%"></p>
+</section>
+<section id="add_city">
+	<div class="page-header"><h3>Add City</h3><hr class="notop"></div>
+<p>
+	<span style="font-family: &quot;Helvetica Neue&quot;, Arial, Helvetica, sans-serif; font-size: 12.8px;">Admin needs to add City of every single region, the city can be edit, delete.</span></p>
+<p>
+	<img alt="" src="assets/images/image_14.png" width="100%"></p>
+</section>
+<section id="admin_profile">
+	<div class="page-header"><h3>Admin Profile</h3><hr class="notop"></div>
+<p>
+	<span style="font-family: &quot;Helvetica Neue&quot;, Arial, Helvetica, sans-serif; font-size: 12.8px;">Admin can change his profile detail.</span></p>
+<p>
+	<img alt="" src="assets/images/image_17.png" width="100%"></p>
+</section>
+<section id="front_end_home_page">
+	<div class="page-header"><h3>Front-end Home Page</h3><hr class="notop"></div>
+<p>
+	It is application front page user can search ads by keyword, region &amp; category wise.</p>
+<p>
+	<img alt="" src="assets/images/image_31.png" width="100%"></p>
+</section>
+<section id="ad_listings_searched_result_listings">
+	<div class="page-header"><h3>Ad Listings./ Searched result listings</h3><hr class="notop"></div>
+<p>
+	<span style="font-family: &quot;Helvetica Neue&quot;, Arial, Helvetica, sans-serif; font-size: 12.8px;">The user can search ad listing using keywords, region wise or category wise.</span></p>
+<p>
+	<img alt="" src="assets/images/image_36.png" width="100%"></p>
+</section>
+<section id="create_ad">
+	<div class="page-header"><h3>Create Ad</h3><hr class="notop"></div>
+<p>
+	<span style="font-family: &quot;Helvetica Neue&quot;, Arial, Helvetica, sans-serif; font-size: 12.8px;">user/seller can create ads by following steps.</span></p>
+<h3 style="margin: 20px 0px; padding: 0px; border: 0px; font-weight: normal; font-size: 1.4em; font-family: &quot;Helvetica Neue&quot;, Arial, Helvetica, sans-serif; vertical-align: baseline; color: rgb(17, 17, 17); line-height: 1;">
+	<strong>Step:1 Add Products Detail</strong></h3>
+<p>
+	<img alt="" src="assets/images/image_21.png" width="100%"></p>
+<h3 style="margin: 20px 0px; padding: 0px; border: 0px; font-weight: normal; font-size: 1.4em; font-family: &quot;Helvetica Neue&quot;, Arial, Helvetica, sans-serif; vertical-align: baseline; color: rgb(17, 17, 17); line-height: 1;">
+	<strong>Step:2 Add Products Images</strong></h3>
+<p>
+	<img alt="" src="assets/images/image_22.png" width="100%"></p>
+<h3 style="margin: 20px 0px; padding: 0px; border: 0px; font-weight: normal; font-size: 1.4em; font-family: &quot;Helvetica Neue&quot;, Arial, Helvetica, sans-serif; vertical-align: baseline; color: rgb(17, 17, 17); line-height: 1;">
+	<strong>Step:3 Add Personal Information</strong></h3>
+<p>
+	<img alt="" src="assets/images/image_23.png" width="100%"></p>
+<h3 style="margin: 20px 0px; padding: 0px; border: 0px; font-weight: normal; font-size: 1.4em; font-family: &quot;Helvetica Neue&quot;, Arial, Helvetica, sans-serif; vertical-align: baseline; color: rgb(17, 17, 17); line-height: 1;">
+	<strong>Step:4 Add Contact information</strong></h3>
+<p>
+	<img alt="" src="assets/images/image_24.png" width="100%"></p>
+</section>
+<section id="ad_s_detail">
+	<div class="page-header"><h3>Ad's Detail</h3><hr class="notop"></div>
+<p>
+	<span style="font-family: &quot;Helvetica Neue&quot;, Arial, Helvetica, sans-serif; font-size: 12.8px;">the page shows full detail of an ad provided by the seller.</span></p>
+<p>
+	<img alt="" src="assets/images/image_38.png" width="100%"></p>
+<p>
+	&nbsp;</p>
+</section>
+<section id="user_s_ads">
+	<div class="page-header"><h3>User's Ads</h3><hr class="notop"></div>
+<p>
+	<span style="font-family: &quot;Helvetica Neue&quot;, Arial, Helvetica, sans-serif; font-size: 12.8px;">the page shows all active ads of a user.</span></p>
+<p>
+	<img alt="" src="assets/images/image_39.png" width="100%"></p>
+</section>
+<section id="user_dashboard">
+	<div class="page-header"><h3>User Dashboard</h3><hr class="notop"></div>
+<p style="margin: 0px 0px 25px; padding: 0px; border: 0px; font-size: 12.8px; font-family: &quot;Helvetica Neue&quot;, Arial, Helvetica, sans-serif; vertical-align: baseline; line-height: 1.65em;">
+	User Dashboard shows stats of his profile and ads visits.<span style="font-size: 12.8px;"> The user can change profile, password &amp; become a verified user by providing his, residential data such as id card, utility bills etc.</span></p>
+<p style="margin: 0px 0px 25px; padding: 0px; border: 0px; font-size: 12.8px; font-family: &quot;Helvetica Neue&quot;, Arial, Helvetica, sans-serif; vertical-align: baseline; line-height: 1.65em;">
+	<img alt="" src="assets/images/image_40.png" width="100%"></p>
+</section>
+<section id="active_ads">
+	<div class="page-header"><h3>Active Ads</h3><hr class="notop"></div>
+<p>
+	<span style="font-family: &quot;Helvetica Neue&quot;, Arial, Helvetica, sans-serif; font-size: 12.8px;">The page shows users active ads on the website. the user can inactive, edit &amp; delete his ads.</span></p>
+<p>
+	<img alt="" src="assets/images/image_12.png" width="100%"></p>
+</section>
+<section id="in_active_ads">
+	<div class="page-header"><h3>In-active Ads</h3><hr class="notop"></div>
+<p>
+	<span style="font-family: &quot;Helvetica Neue&quot;, Arial, Helvetica, sans-serif; font-size: 12.8px;">The page shows users in active ads. the user can activate, edit &amp; delete his ads.</span></p>
+<p>
+	<img alt="" src="assets/images/image_32.png" width="100%"></p>
+</section>
+<section id="pending_ads">
+	<div class="page-header"><h3>Pending Ads</h3><hr class="notop"></div>
+<p>
+	<span style="font-family: &quot;Helvetica Neue&quot;, Arial, Helvetica, sans-serif; font-size: 12.8px;">The page shows users pending ads on the website. Application Admin reviews ads content, admin can active or reject the ad. user can edit, delete his pending ads.</span></p>
+<p>
+	<img alt="" src="assets/images/image_35.png" width="100%"></p>
+</section>
+<section id="message_system">
+	<div class="page-header"><h3>Message System</h3><hr class="notop"></div>
+<p style="margin: 0px 0px 25px; padding: 0px; border: 0px; font-size: 12.8px; font-family: &quot;Helvetica Neue&quot;, Arial, Helvetica, sans-serif; vertical-align: baseline; line-height: 1.65em;">
+	Buyer can send the message to the seller about his product from single ads page view following guideline.&nbsp;<span style="font-size: 12.8px;">Buyer can contact </span>the seller<span style="font-size: 12.8px;"> by sending him </span>an email<span style="font-size: 12.8px;"> message. Reply from the seller can be seen in the message window.</span></p>
+<p style="margin: 0px 0px 25px; padding: 0px; border: 0px; font-size: 12.8px; font-family: &quot;Helvetica Neue&quot;, Arial, Helvetica, sans-serif; vertical-align: baseline; line-height: 1.65em;">
+	<img alt="" src="assets/images/image_20.png" width="100%"></p>
+<h3 style="margin: 20px 0px; padding: 0px; border: 0px; font-weight: normal; font-size: 1.4em; font-family: &quot;Helvetica Neue&quot;, Arial, Helvetica, sans-serif; vertical-align: baseline; color: rgb(17, 17, 17); line-height: 1;">
+	<strong>Message Window Live Chat</strong></h3>
+<p>
+	<img alt="" src="assets/images/image_34.png" width="100%"></p>
+</section>
+<section id="chat_system">
+	<div class="page-header"><h3>Chat System</h3><hr class="notop"></div>
+<p style="margin: 0px 0px 25px; padding: 0px; border: 0px; font-size: 12.8px; font-family: &quot;Helvetica Neue&quot;, Arial, Helvetica, sans-serif; vertical-align: baseline; line-height: 1.65em;">
+	buyer can live chat with the seller if the seller is online seller<span style="font-size: 12.8px;"> can block any user from chat settings.</span><img alt="" src="assets/images/image_19.png" style="font-family: Arial, Verdana, sans-serif; font-size: 12px;" width="100%"></p>
+</section>
+
+	<section id="map_listings">
+		<div class="page-header"><h3>Map Listings</h3><hr class="notop"></div>
+			<img alt="" src="assets/images/add_map.png" width="100%">
+			<img alt="" src="assets/images/map_listings.png" width="100%">
+	</section>
+	<section id="custom_pages">
+		<div class="page-header"><h3>Custom Page</h3><hr class="notop"></div>
+			<img alt="" src="assets/images/add_custom.png" width="100%">
+			<img alt="" src="assets/images/manage_page.png" width="100%">
+	</section>
+
+	<section id="featured_ads">
+		<div class="page-header"><h3>Featured Ads</h3><hr class="notop"></div>
+
+		<p>Featured ads help sellers promote their product or service by getting their ads more visibility with more buyers and sell what they want faster</p>
+		<p>Featured ads option is fully dynamic, admin have option to active/deactivate featured ads.</p>
+		<p> you need to set up <a href="#cron">cron job</a> for feature ads.  </p>
+
+		<h2>Stripe Payment gateway</h2>
+		<p>Admin you need to create an account on stripe<a href="https://stripe.com" target="_blank">stripe </a></p>
+		<p> copy public and secret keys. </p>
+		<img alt="" src="assets/images/stripe.png" width="100%">
+		<hr>
+		<img alt="" src="assets/images/feature_ads.png" width="100%">
+		<hr>
+		<p> Feature ads font view </p>
+		<img alt="" src="assets/images/featured_ads_front.png" width="100%">
+	</section>
+
+	<section id="mobile_verification">
+		<div class="page-header"><h3>Mobile Verification</h3><hr class="notop"></div>
+		<p>Admin can active or deactivate phone verification option.</p>
+		<img alt="" src="assets/images/twilio_settings.png" width="100%">
+		<hr>
+		<p> Select from number to whome you want to send code to users phone number</p>
+		<img alt="" src="assets/images/twilio_number.png" width="100%">
+		<hr>
+		<p> Mobile verification front view </p>
+		<img src="assets/images/phone_verification.png"  width="100%">
+		<hr>
+		<img src="assets/images/verified_phone.png"  width="100%">
+	</section>
+
+    <hr />
+
+<footer>
+    <p>Copyright Ranksol 2018 made with the <a href="http://rxa.li/documenter">Documenter v2.0</a></p>
+</footer>
+
+</div><!-- /container --> 
+
+<!-- Le javascript
+    ================================================== --> 
+<!-- Placed at the end of the document so the pages load faster --> 
+<script>document.createElement('section');var duration='500',easing='swing';</script>
+<script src="assets/js/jquery.js"></script> 
+<script src="assets/js/jquery.scrollTo.js"></script>
+<script src="assets/js/jquery.easing.js"></script>
+<script src="assets/js/scripts.js"></script> 
+<script src="assets/js/google-code-prettify/prettify.js"></script> 
+<script src="assets/js/bootstrap-min.js"></script> 
+</body>
+</html>
