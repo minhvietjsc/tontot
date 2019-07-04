@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Mail;
 use Response;
 use App\SaveAdd;
 Use App\Session;
+use App\Employee;
 
 class AjaxController extends Controller
 {
@@ -57,6 +58,36 @@ class AjaxController extends Controller
                 $b = '<a onclick="editRow(' . $data->id . ')" href="javascript:;" title="Sửa" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i></a> ';
                 $b .= '<a onclick="deleteRow(this)" data-id="' . $data->id . '"  data-obj="users" href="javascript:;" title="Xóa" class="btn btn-xs btn-danger danger-alert"><i class="glyphicon glyphicon-trash"></i></a> ';
                 $b .= '&nbsp;<a onclick="changeStatus(this)" data-obj="users" data-id="'.$data->id.'"  title="'.$title.'" class="btn btn-xs '.$btn_clr.' "><i class="fa '.$status.' "></i></a>';
+                if ($data->id_card !='') {
+                    $b .= '&nbsp;<a onclick="view_card('.$data->id.')" title="Ảnh thẻ" class="btn btn-xs btn-warning "><i class="fa fa-credit-card"></i></a>';
+                }
+                if ($data->id_card !='' && $data->is_verified == 2) {
+                    $b .= '&nbsp;<a  title="Người dùng đã xác minh" class="btn btn-xs btn-success "><i class="fa fa-check-square-o"></i></a>';
+                }
+                if ($data->id_card !='' && $data->is_verified == 3) {
+                    $b .= '&nbsp;<a  title="Chưa được xác minh / Người dùng bị từ chối" class="btn btn-xs btn-danger "><i class="fa fa-user-secret"></i></a>';
+                }
+                if ($data->mobile_verify !='' && $data->mobile_verify == 1) {
+                    $b .= '&nbsp;<a  title="Đã xác minh số điện thoại" class="btn btn-xs btn-purple "><i class="fa fa-mobile"></i></a>';
+                }
+                return $b;
+            })
+            ->make(true);
+    }
+    public function loadEmployee(Request $request)
+    {
+        $data = Employee::All()->where('type', '!=', 'adm');
+        return Datatables::of($data)
+
+            ->addColumn('action', function ($data)
+            {
+                if ($data->status == 0){ $status = "fa-unlock";$title = 'Kích hoạt'; $btn_clr = 'btn-success'; }
+                if ($data->status == 1){ $status = "fa-lock"; $title = 'Khóa'; $btn_clr = 'btn-danger'; }
+
+                $b = '<input type="checkbox" name="status" data-id="' . $data->id . '" data-obj="employee" " ' . (($data->status == '1') ? 'checked' : '') . ' " data-on-text="On" data-off-text="Off" data-size="mini"  >&nbsp; <span id="action_separator">|</span> &nbsp;';
+                $b = '<a onclick="editRow(' . $data->id . ')" href="javascript:;" title="Sửa" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i></a> ';
+                $b .= '<a onclick="deleteRow(this)" data-id="' . $data->id . '"  data-obj="employee" href="javascript:;" title="Xóa" class="btn btn-xs btn-danger danger-alert"><i class="glyphicon glyphicon-trash"></i></a> ';
+                $b .= '&nbsp;<a onclick="changeStatus(this)" data-obj="employee" data-id="'.$data->id.'"  title="'.$title.'" class="btn btn-xs '.$btn_clr.' "><i class="fa '.$status.' "></i></a>';
                 if ($data->id_card !='') {
                     $b .= '&nbsp;<a onclick="view_card('.$data->id.')" title="Ảnh thẻ" class="btn btn-xs btn-warning "><i class="fa fa-credit-card"></i></a>';
                 }

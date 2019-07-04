@@ -101,6 +101,7 @@ class SearchController extends Controller
 
     public function search(Request $request)
     {
+        // return $request->all();
         $detect = new Mobile_Detect;
         //print_r($request->all());
         //exit;
@@ -177,22 +178,6 @@ class SearchController extends Controller
 
             )
         );
-        // $city = City::all();
-        // return $city;
-//       CITY---------------------------------
-
-        // $sql_city="name";
-        // $sql_city = City::with(array('city' => function ($query) {
-        //             $query->where('city');
-                
-        //     }
-        //        'city';   
-
-        //     )
-        // );
-        // return $sql_city;
-
-
 
 
         if ($this->region != '') {
@@ -210,22 +195,32 @@ class SearchController extends Controller
         if ($request->image != '') {
             $sql_search = $sql_search->where('is_img', $request->image);
         }
-        $sql_search = $sql_search->orderByRaw('CASE WHEN (ads.from_date <= NOW() AND ads.to_date >= NOW() AND ads.ads_type <> 1) THEN ads.ads_type END DESC, ads.created_at DESC');
-        // price sort
-        if ($request->price_sort != '') {
-            $sql_search = $sql_search->orderBy('price', $request->price_sort);
+
+        //tim kiem theo city
+        if ($request->location != '') {
+            $sql_search = $sql_search->where('city_id', $request->location);   
         }
-        // price range
+        //sap xep gia
+        if ($request->price_sort != ''){
+                $sql_search = $sql_search->orderBy('price', $request->price_sort);
+        }
+
+        //price range    
         if ($request->price_range != '') {
             $p_range = explode(';', $request->price_range);
             $sql_search = $sql_search->whereBetween('price', [$p_range[0], $p_range[1]]);
         }
 
+        //tim kiem online offline
         if ($request->online == 1 && $request->offline != 2) {
             $sql_search = $sql_search->where('is_login', 1);
         } elseif ($request->online == 2 && $request->offline != 1) {
             $sql_search = $sql_search->where('is_login', 0);
         }
+
+        $sql_search = $sql_search->orderByRaw('CASE WHEN (ads.from_date <= NOW() AND ads.to_date >= NOW() AND ads.ads_type <> 1) THEN ads.ads_type END DESC, ads.created_at DESC');
+       
+        
         $sql_search = $sql_search->where('status',1);
         $sql_search = $sql_search->orderByRaw("FIELD(f_type , 'top_page_price', 'urgent_top_price', 'urgent_price','home_page_price') ASC, created_at DESC");
         $total = $sql_search->count();
@@ -234,9 +229,7 @@ class SearchController extends Controller
             ->paginate(10)
             ->appends(request()
                 ->query());
-//        print_r($sql_search);
-//
-//        exit;
+            
         error_reporting(0);
         if($total > 0){
 
@@ -298,31 +291,6 @@ class SearchController extends Controller
             ];
             array_push($parent_cat, $tmp_cat);
         }
-
-
-
-        // r($parent_cat);
-        // $result = json_encode($parent_cat);
-
-
-        // return  $result;
-            // $products = '["laptop","earphones","mouse"]';
-        // $result = $parent_cat;
-
-//return $parent_cat;
-        // foreach ($parent_cat as $key => $p1) {
-        //     return $p1                                                           ;
-        // }
-        //   foreach ($parent_cat as $key => $p1) {
-        //     return $p1; 
- 
-        // }
-
-        // return dd($parent_cat)
-
-        // return $parent_cat; 
-        // return $req_category;
-        // return $sql_search[0];
 
         return view('search.index', compact('search_fields','result', 'total', 'region', 'category', 'req_category','parent_cat'));
     }

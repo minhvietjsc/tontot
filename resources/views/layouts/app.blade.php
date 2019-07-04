@@ -4,7 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="format-detection" content="telephone=yes">
     <title>@if( isset($setting->title)) {{ $setting->title. ' | ' }} @endif @yield('title') </title>
+
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{asset('assets/ico/fav.ico')}}">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{asset('assets/ico/fav.ico')}}">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{asset('assets/ico/fav.ico')}}">
@@ -71,12 +73,10 @@
     <div class="header-top">
         <div class="bg-top">
             <div class="container">
-                <div class="pull-left" style="line-height: 28px;font-size: 18px; color: #fff">
-                    <span>Hotline:</span> 
-                    <span>{{isset($setting) ? $setting->hotline : ''}}</span>
-                </div>
                 <ul class="top pull-right">
-                    <li class="item-top"><a href="#">Chăm sóc khách hàng</a></li>
+                    <li class="item-top"><a href="">Hotline : {{isset($setting) ? $setting->hotline : ''}}</a></li>
+                   
+                    <li class="item-top"><a href="#">Chăm sóc khách hàng </a></li>
                     <li class="item-top"><a href="#">Kiểm tra đơn hàng</a></li>
                     @if(Auth::guest())
                         <li class="item-top"><a href="{{route('login')}}">Đăng nhập </a></li>
@@ -135,7 +135,7 @@
                                 <div class="keyword search-col relative" style="border-radius: 3px 0 0 3px;"><i class="icon-docs icon-append"></i>
                                     <input type="text" name="keyword" class="form-control has-icon" placeholder="Từ khóa tìm kiếm" value="">
                                 </div>
-                                <div class="location search-col relative locationicon">
+                                <!-- <div class="location search-col relative locationicon">
                                     <i class="icon-location-2 icon-append"></i>
                                     <select name="region" id="region" class="form-control locinput input-rel searchtag-input has-icon selecters">
                                         <option value="">Chọn khu vực</option>
@@ -143,15 +143,15 @@
                                             <option value="{{ $value->id }}" {{(\Request::has('region') && \Request::get('region') == $value->id) ? 'selected' : ''}}>{{ ucfirst($value->title) }}</option>
                                         @endforeach
                                     </select>
-                                </div>
-                                <div class="category search-col relative">
+                                </div> -->
+                                <!-- <div class="category search-col relative">
                                     <i class="icon  icon-th icon-append"></i>
                                     <select name="category" class="form-control locinput input-rel has-icon" id="category" >
                                         <option value=""> Chọn danh mục</option>
                                         {!! \App\Http\Controllers\Controller::buildCategory(0, $category_top) !!}
                                     </select>
                                 </div>
-                                <input id="price_sort" type="hidden" name="price_sort">
+                                <input id="price_sort" type="hidden" name="price_sort"> -->
                                 <div class="search-col btn-submitSearch">
                                     <button class="btn btn-default btn-search btn-block"><i class="icon-search"></i></button>
                                 </div>
