@@ -2501,7 +2501,7 @@ html[dir="rtl"] body .intro h1, .intro html[dir="rtl"] body h1, html[dir="rtl"] 
 }
 .search-row .notify,
 .search-row .shop-cart {
-    width: 11.7647%;
+    width: 12.765%;
     padding-top: 10px;
     text-align: center;
 }
@@ -3608,7 +3608,7 @@ nav.slider-nav a.next {
 }
 
 .col-thin-left {
-    padding-left: 10px;
+    padding-left: 0px;
 }
 
 .col-thin-right {
@@ -4119,6 +4119,8 @@ nav.slider-nav a.next {
 
 .listing-view-action span.active {
     color: #000;
+    font-size: 20px;
+    margin-top: 12px;
 }
 
 .tab-filter .select-sort-by {
@@ -4519,6 +4521,7 @@ hr.thin {
     line-height: normal;
     border: 1px solid #cccccc;
     display: block;
+    margin-top: 1.5em;
 }
 
 .select-sort-by .list .option {
@@ -7708,4 +7711,27 @@ h2.logo-title {padding: 0;}
 }
 #son_mobi{
     display: none
+}
+.menu-chil{
+  background: none repeat scroll 0 0 #ffffff; 
+  margin-bottom: 2px;
+}
+.menu-chil ul{
+  list-style-type: none;
+  overflow: hidden;
+}
+.menu-chil ul li{
+  width: 25%;
+  display: inline-block;
+  height: auto;
+}
+.menu-chil li a {
+  color: #000;
+  float: left;
+  padding: 5px 16px;
+  text-decoration: none;
+}
+.menu-chil li a:hover {
+  color: #f68121 !important;
+  text-decoration: underline;
 }

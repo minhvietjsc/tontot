@@ -39,6 +39,7 @@ class AppServiceProvider extends ServiceProvider
         $trans->addResource('array', require base_path('resources/lang/en/carbon.php'), 'en');
         View::share('setting', \DB::table('setting')->first());
         View::share('region_top', \DB::table('region')->get());
+        View::share('city_select', \DB::table('city')->get());
         View::share('pages_contact', CustomPage::where('type', CustomPage::TYPE_CONTACT)->orderBy('sort')->get());
         View::share('pages_purchase', CustomPage::where('type', CustomPage::TYPE_PURCHASE)->orderBy('sort')->get());
         View::share('pages_seller', CustomPage::where('type', CustomPage::TYPE_SELLER)->orderBy('sort')->get());
