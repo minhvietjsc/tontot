@@ -101,12 +101,8 @@ a:focus {
 /* Footer */
 .footer {
     border-top: 1px solid rgba(152, 152, 152, 0.2);
-    bottom: 0;
-    text-align: left !important;
-    padding: 19px 30px 20px;
-    position: absolute;
-    right: 0;
-    left: 250px;
+    text-align: center;
+    margin: 0 0 0 15em ;  
 }
 
 #wrapper {

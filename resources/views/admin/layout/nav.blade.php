@@ -116,8 +116,14 @@ if($version_update!=''){
                 <li><a href="{{ url('dashboard') }}" class="waves-effect"><i class="mdi mdi-view-dashboard"></i><span> Dashboard </span> </a></li>
                 <li>
                     <a href="{{ url('users') }}" class="waves-effect">
-                        <i class="fa fa-users"></i>
+                        <i class="fa fa-user"></i>
                         <span> Quản lý Người dùng</span> 
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url('employees') }}" class="waves-effect">
+                        <i class="fa fa-users"></i>
+                        <span> Quản lý nhân viên</span> 
                     </a>
                 </li>
                 <li>
