@@ -172,6 +172,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('load-my-ads', 'AjaxController@loadMyAds');
     Route::get('load-my-orders', 'AjaxController@loadMyOrders');
     Route::get('load-users', 'AjaxController@loadUsers')->name('load-users');
+    Route::get('load-employee', 'AjaxController@loadEmployee')->name('load-employee');
     Route::post('delete-category', 'AjaxController@deleteCategory');
     Route::post('delete', 'AjaxController@delete')->name('delete');
     Route::post('change-status', 'AjaxController@changeStatus');
@@ -190,6 +191,7 @@ Route::group(['middleware' => ['auth']], function () {
 Route::group(['namespace' => 'Admin', 'middleware' => ['auth', 'checkAdmin']], function () {
     Route::resource('admin', 'AdminController');
     Route::resource('users', 'UserController');
+    Route::resource('employees', 'EmployeeController');
     Route::resource('region', 'RegionController');
     Route::resource('email-settings', 'UserEmailSettings');
     Route::resource('customfields', 'CustomfieldsController');
@@ -206,6 +208,11 @@ Route::group(['namespace' => 'Admin', 'middleware' => ['auth', 'checkAdmin']], f
     Route::post('profile-settings', 'UserController@profileSetting');
     Route::get('users', 'UserController@loadUsers');
     Route::post('user/loadEdit', 'UserController@loadEdit');
+    //employee
+    Route::get('employees', 'EmployeeController@loadEmployee');
+    Route::post('employee/loadEdit', 'EmployeeController@loadEdit');
+    
+
     Route::get('show-card', 'UserController@showCard');
     Route::get('vfy-card', 'UserController@vfyCard');
     // Custom Fields routes
