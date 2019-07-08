@@ -16,10 +16,10 @@ class CreateAdsImagesTable extends Migration
         Schema::create('ads_images', function (Blueprint $table) {
             $table->increments('id');
 
-         $table->integer('ad_id')->length(10)->nullable()->unsigned();
-         $table->string('orignal_filename', 500)->nullable();
-         $table->string('image', 500)->nullable();
-         $table->tinyInteger('status')->default(1);
+            $table->integer('ad_id')->length(10)->nullable()->unsigned();
+            $table->string('orignal_filename', 500)->nullable();
+            $table->string('image', 500)->nullable();
+            $table->tinyInteger('status')->default(1);
 
         $table->timestamp('created_at')->useCurrent();
         $table->timestamp('updated_at');

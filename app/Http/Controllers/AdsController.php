@@ -71,7 +71,7 @@ class AdsController extends Controller
 
         $ads_type = Ads::$TYPE;
 
-        return view('ads.create', compact('region', 'parent_cat', 'featured', 'ads_type'));
+        return view('ads.create', compact('region', 'parent_cat', 'featured', 'f_type'));
     }
 
     /**

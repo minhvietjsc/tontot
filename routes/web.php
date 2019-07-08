@@ -211,10 +211,11 @@ Route::group(['namespace' => 'Admin', 'middleware' => ['auth', 'checkAdmin']], f
     //employee
     Route::get('employees', 'EmployeeController@loadEmployee');
     Route::post('employee/loadEdit', 'EmployeeController@loadEdit');
-    
+    Route::get('show-card', 'EmployeeController@showCard');
 
     Route::get('show-card', 'UserController@showCard');
     Route::get('vfy-card', 'UserController@vfyCard');
+
     // Custom Fields routes
     Route::get('customfields', 'CustomfieldsController@index');
     Route::post('customfields/edit', 'CustomfieldsController@store');
@@ -233,6 +234,7 @@ Route::group(['namespace' => 'Admin', 'middleware' => ['auth', 'checkAdmin']], f
     Route::post('test-email', 'UserEmailSettings@testEmail')->name('test-email');
 
     Route::get('sort-pages', 'CustomPageController@sortPages')->name('sort-pages');
+
     /*slider controller*/
     Route::get('slider/index', [
         'as' => 'slider.index',

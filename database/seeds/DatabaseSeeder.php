@@ -21,7 +21,8 @@ class DatabaseSeeder extends Seeder
                  GroupSeeder::class,
                  GroupFields::class,
                  SettingsSeeder::class,
-                 EmailSettingsSeeder::class
+                 EmailSettingsSeeder::class,
+                 EmployeeSeeder::class
              ]
          );
     }

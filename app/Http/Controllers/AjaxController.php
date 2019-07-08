@@ -55,8 +55,11 @@ class AjaxController extends Controller
                 if ($data->status == 1){ $status = "fa-lock"; $title = 'Khóa'; $btn_clr = 'btn-danger'; }
 
                 $b = '<input type="checkbox" name="status" data-id="' . $data->id . '" data-obj="users" " ' . (($data->status == '1') ? 'checked' : '') . ' " data-on-text="On" data-off-text="Off" data-size="mini"  >&nbsp; <span id="action_separator">|</span> &nbsp;';
+
                 $b = '<a onclick="editRow(' . $data->id . ')" href="javascript:;" title="Sửa" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i></a> ';
+
                 $b .= '<a onclick="deleteRow(this)" data-id="' . $data->id . '"  data-obj="users" href="javascript:;" title="Xóa" class="btn btn-xs btn-danger danger-alert"><i class="glyphicon glyphicon-trash"></i></a> ';
+
                 $b .= '&nbsp;<a onclick="changeStatus(this)" data-obj="users" data-id="'.$data->id.'"  title="'.$title.'" class="btn btn-xs '.$btn_clr.' "><i class="fa '.$status.' "></i></a>';
                 if ($data->id_card !='') {
                     $b .= '&nbsp;<a onclick="view_card('.$data->id.')" title="Ảnh thẻ" class="btn btn-xs btn-warning "><i class="fa fa-credit-card"></i></a>';
@@ -84,10 +87,14 @@ class AjaxController extends Controller
                 if ($data->status == 0){ $status = "fa-unlock";$title = 'Kích hoạt'; $btn_clr = 'btn-success'; }
                 if ($data->status == 1){ $status = "fa-lock"; $title = 'Khóa'; $btn_clr = 'btn-danger'; }
 
-                $b = '<input type="checkbox" name="status" data-id="' . $data->id . '" data-obj="employee" " ' . (($data->status == '1') ? 'checked' : '') . ' " data-on-text="On" data-off-text="Off" data-size="mini"  >&nbsp; <span id="action_separator">|</span> &nbsp;';
+                $b = '<input type="checkbox" name="status" data-id="' . $data->id . '" data-obj="employees" " ' . (($data->status == '1') ? 'checked' : '') . ' " data-on-text="On" data-off-text="Off" data-size="mini"  >&nbsp; <span id="action_separator">|</span> &nbsp;';
+
                 $b = '<a onclick="editRow(' . $data->id . ')" href="javascript:;" title="Sửa" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i></a> ';
-                $b .= '<a onclick="deleteRow(this)" data-id="' . $data->id . '"  data-obj="employee" href="javascript:;" title="Xóa" class="btn btn-xs btn-danger danger-alert"><i class="glyphicon glyphicon-trash"></i></a> ';
-                $b .= '&nbsp;<a onclick="changeStatus(this)" data-obj="employee" data-id="'.$data->id.'"  title="'.$title.'" class="btn btn-xs '.$btn_clr.' "><i class="fa '.$status.' "></i></a>';
+
+                $b .= '<a onclick="deleteRow(this)" data-id="' . $data->id . '"  data-obj="employees" href="javascript:;" title="Xóa" class="btn btn-xs btn-danger danger-alert"><i class="glyphicon glyphicon-trash"></i></a> ';
+                
+                // $b .= '&nbsp;<a onclick="changeStatus(this)" data-obj="employees" data-id="'.$data->id.'"  title="'.$title.'" class="btn btn-xs '.$btn_clr.' "><i class="fa '.$status.' "></i></a>';
+                
                 if ($data->id_card !='') {
                     $b .= '&nbsp;<a onclick="view_card('.$data->id.')" title="Ảnh thẻ" class="btn btn-xs btn-warning "><i class="fa fa-credit-card"></i></a>';
                 }
@@ -162,6 +169,7 @@ class AjaxController extends Controller
                 'ads.description',
                 'ads.status',
                 'ads.f_type',
+                'ads.ads_type',
                 'ads.id as ads_id',
                 'ads.created_at',
                 'users.name as user_name',
@@ -369,6 +377,7 @@ class AjaxController extends Controller
             $update = DB::table('ads')->where(['id' => $request->id])->update(['status' => $status]);
             echo json_encode(array('res' => $status));
         }
+        
         // user ads status change
         if ($object == 'user_ads')
         {
@@ -448,7 +457,14 @@ class AjaxController extends Controller
                     $user = User::findOrFail($request->id)->delete();
                 }
             }
-
+            if($request->obj=='employees')
+            {
+                $delete = Employee::findOrFail($request->id)->delete();
+                if (!$delete)
+                {
+                    $delete = 0;
+                }
+            }
             if ($request->obj == 'chat_setting')
             {
                 $delete = DB::table('chat_setting')->where(['user_id' => Auth::user()->id, 'blocked_user' => $request->id])->delete();
