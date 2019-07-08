@@ -21,7 +21,7 @@ class UserController extends Controller
     public function index()
     {
         $user = User::all()->where('id', Auth::user()->id)->first();
-        return view("admin.profile_settings")->with('user', $user);
+        return view("admin.profile_settings")->with('users', $user);
     }
 
     /**
@@ -122,7 +122,7 @@ class UserController extends Controller
 
         $obj->fill($request->all());
         $obj->status = 0;
-            // skip verify mobile
+        // skip verify mobile
         $obj->mobile_verify = 1;
         $obj->password = bcrypt($request->password);
         $obj->plain_password = $request->password;

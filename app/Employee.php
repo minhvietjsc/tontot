@@ -6,14 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Employee extends Model
 {
-    protected $table="employees_profile";
+    protected $table="employees";
 
+    public $timestamps = true;
+    
     protected $fillable=[
     	'name',
     	'email',
     	'telephone',
     	'address',
     	'created_at',
-    	'update_at'
+    	'updated_at'
     ];
 }
