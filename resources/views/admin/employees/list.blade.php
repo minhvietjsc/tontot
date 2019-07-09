@@ -37,7 +37,7 @@
             <div class="card-box">
                 <div class="row">
                     <div class="add_more">
-                        <button type="button" class="btn btn-success waves-effect w-md waves-light" onclick='addUser()' >Thêm người dùng</button>
+                        <button type="button" class="btn btn-success waves-effect w-md waves-light" onclick='addEmployee()' >Thêm người dùng</button>
                     </div>
                     <div class="col-xs-12 bg-white">
                         <table id="load_datatable" class="table table-colored table-inverse table-hover table-striped table-bordered">
@@ -87,7 +87,23 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="">Email:</label>
-                                <input type="email" name="email"  class="form-control" value="" id="email" placeholder="Email" required >
+                                <input type="text" name="email"  class="form-control" value="" id="email" placeholder="Email" required >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Điện thoại:</label>
+                                <input type="text" name="phone"  class="form-control" value="" id="phone" placeholder="Điện thoại" required >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Địa chỉ:</label>
+                                <input type="text" name="address"  class="form-control" value="" id="address" placeholder="Địa chỉ" required >
                             </div>
                         </div>
                     </div>
@@ -153,45 +169,21 @@
 
                     $('#loading').hide();
 
-                    var json_obj = JSON.parse(result);
+                    $('#add_employee')[0].reset();
 
-                    if(json_obj.msg != '0'){
+                    $("#id").val("");
 
-                        if(json_obj.msg =='email'){
+                    $("#con-close-modal").modal('hide');
 
-                            $('#email').focus();
+                    refreshTable();
 
-                            swal("Error!", 'Email đã được dùng!' , "error");
-
-                        }
-
-
-
-                        if(json_obj.msg=='1'){
-
-                            $('#add_employee')[0].reset();
-
-                            $("#id").val("");
-
-                            $("#con-close-modal").modal('hide');
-
-                            refreshTable();
-
-                            swal("Success!", "Người dùng đã được lưu thành công", "success");
-
-                        }
-
-                    }else{
-
-                        swal("Error!", "Đã xảy ra sự cố.", "error");
-
-                    }
+                    swal("Success!", "Người dùng đã được lưu thành công", "success");
 
                 }
 
             });
 
-            return false;
+            // return false;
 
         });
 
@@ -255,8 +247,6 @@
 
             if(status == 'err'){ status = 3; }
 
-
-
             $.get("{{ url('vfy-card') }}", {id: id, status: status}, function(result){
 
                 if(result == '1'){
@@ -266,8 +256,6 @@
                     $("#cardModal").modal('hide');
 
                     swal("Success!", "Lưu thành công!", "success");
-
-
 
                 }else{
 
@@ -283,15 +271,9 @@
 
     }
 
-
-
-
-
     function view_card(id){
 
         $('#loading').show();
-
-
 
         if(id!=''){
 
@@ -336,9 +318,7 @@
 
     }
 
-
-
-    function addUser(){
+    function addEmployee(){
         $("#con-close-modal").modal('show');
     }
 
@@ -379,48 +359,8 @@
 
     }
 
-
     // make frivate
-
-
-
-    function changestatus(e){
-
-        $('#loading').show();
-
-        var id = $(e).data('id');
-
-        var action = 'imported';
-        $.post( '{{ url('user-status') }}',
-
-            {id:id, action:action},
-
-            function(data){
-
-                var obj = $.parseJSON(data);
-
-                if(obj.res == 0){
-
-                    refreshTable();
-
-                    swal('Success', 'Mở khóa người dùng thành công!' , 'success');
-
-                }
-                if(obj.res == 1){
-
-                    swal('Success', 'Khóa người dùng thành công!' , 'success');
-
-                    refreshTable();
-                }
-                $('#loading').hide();
-
-            });
-
-    }
-
-
 </script>
-
 
 @endsection
 

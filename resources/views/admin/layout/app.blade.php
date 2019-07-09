@@ -32,6 +32,8 @@ $setting = DB::table('setting')->first();
 
     <link href="{{ asset('assets/plugins/datatables/dataTables.bootstrap.min.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ asset('admin_assets/css/jquery-ui.css') }}" rel="stylesheet" type="text/css"/>
+<!--     <link href="{{ asset('admin_assets/css/sortable.css') }}" rel="stylesheet" type="text/css"/> -->
+
 
     <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -40,6 +42,7 @@ $setting = DB::table('setting')->first();
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
     <script src="{{ asset('assets/js/jquery.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.sortable.js') }}"></script>
     <script>
         window.Laravel = {!! json_encode([ 'csrfToken' => csrf_token(), ]) !!};
         var base_url = '<?= url('/') ?>';
@@ -55,6 +58,20 @@ $setting = DB::table('setting')->first();
             top: 0!important;
         }
     </style>
+    <script>
+        $(function() {
+            $('.sortable').sortable();
+            $('.handles').sortable({
+                handle: 'span'
+            });
+            $('.connected').sortable({
+                connectWith: '.connected'
+            });
+            $('.exclude').sortable({
+                items: ':not(.disabled)'
+            });
+        });
+    </script>
 </head>
 <body>
 
