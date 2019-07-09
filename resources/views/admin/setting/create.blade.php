@@ -186,6 +186,8 @@
 
                                     <div class="col-md-offset-1 social_link m-t-10 m-b-10 {{ (isset($data->social_links) && $data->social_links == 1)? '' : 'hidden'   }}">
                                         <button type="button" class="btn btn-sm btn-facebook" onclick="$('.facebook').removeClass('hidden');" >facebook</button>
+                                        <button type="button" class="btn btn-sm btn-zalo" onclick="$('.zalo').removeClass('hidden');" >zalo</button>
+                                         <button type="button" class="btn btn-sm btn-youtube" onclick="$('.youtube').removeClass('hidden');" >youtube</button>
                                         <button type="button" class="btn btn-sm btn-linkedin" onclick="$('.linkedin').removeClass('hidden');" >Linkedin</button>
                                         <button type="button" class="btn btn-sm btn-twitter" onclick="$('.twitter').removeClass('hidden');" >Twitter</button>
                                         <button type="button" class="btn btn-sm btn-googleplus" onclick="$('.googleplus').removeClass('hidden');" >google plus</button>
@@ -196,7 +198,18 @@
                                                 <input type="url" name="facebook" class="form-control" value="{{ $data->facebook !='' ? $data->facebook : '' }} ">
                                             </div>
                                         </div>
-
+                                        <div class="zalo {{ $data->zalo !='' ? '' : 'hidden' }} m-t-10">
+                                            <div class="form-group">
+                                                <label for="">Zalo Link</label>
+                                                <input type="url" name="zalo" class="form-control" value="{{ $data->zalo !='' ? $data->zalo : '' }} ">
+                                            </div>
+                                        </div>
+                                         <div class="youtube {{ $data->youtube !='' ? '' : 'hidden' }} m-t-10">
+                                            <div class="form-group">
+                                                <label for="">Youtube Link</label>
+                                                <input type="url" name="youtube" class="form-control" value="{{ $data->youtube !='' ? $data->youtube : '' }} ">
+                                            </div>
+                                        </div>
                                         <div class="linkedin {{ $data->linkedin !='' ? '' : 'hidden' }} m-t-10">
                                             <div class="form-group">
                                                 <label for="">Linkedin Link</label>

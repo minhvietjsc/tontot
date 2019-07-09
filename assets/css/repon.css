@@ -62,6 +62,9 @@
 	.add-title {
 		font-size: 15px
 	}
+	.pull-right p{
+		margin-bottom: 0px;
+	}
 	.cat-title-home a{
 		margin-left: 15px
 	}
@@ -84,8 +87,11 @@
 		margin-left: 30px;
 		margin-top: 15px;
 	}
-	a:hover, a:focus{
+	/* a:hover, a:focus{
 		color:#fff;
+	} */
+	.pull-right{
+		float: left !important;
 	}
 	button.navbar-toggle {
 		position: absolute !important;
@@ -129,8 +135,14 @@
 		height: auto !important;
 	}
 	.add-title {
-		font-size: 15px
+		font-size: 15px;
 	}
+	.add-title a{
+		line-height: 1.2em;
+	}
+	.pull-right p{
+			margin-bottom: 0px;
+		}
 	.cat-title-home a{
 		margin-left: 15px
 	}
@@ -154,9 +166,9 @@
 		margin-left: 30px;
 		margin-top: 15px;
 	}
-	a:hover, a:focus{
+	/* a:hover, a:focus{
 		color:#fff;
-	}
+	} */
 	button.navbar-toggle {
 		position: absolute !important;
 		right: 18px !important;
@@ -181,7 +193,13 @@
 			height: auto !important;
 		}
 		.add-title {
-			font-size: 15px
+			font-size: 15px;
+		}
+		.add-title a{
+			line-height: 1em;
+		}
+		.pull-right p{
+			margin-bottom: 0px;
 		}
 		.cat-title-home a{
 			margin-left: 15px
@@ -205,9 +223,9 @@
 			margin-left: 30px;
 			margin-top: 15px;
 		}
-		a:hover, a:focus{
+		/* a:hover, a:focus{
 			color:#fff;
-		}
+		} */
 		button.navbar-toggle {
 			position: absolute !important;
 			right: 18px !important;

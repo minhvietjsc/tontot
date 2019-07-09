@@ -53,63 +53,29 @@ class EmployeeController extends Controller
     public function store(Request $request)
     {
 
-        if ($request->id =='')
-        {
-            $check_email = Employee::where('email', $request->email)->first();
-            if ($check_email)
-            {
-                echo json_encode(['msg' => 'email']);
-                exit;
-            }
-        }
-
         $obj = new Employee();
-        if ($request->id != '')
-        {
-            $obj = $obj->findOrFail($request->id);
-        }
-
-        /* Start for request on add-user */
-        $status = 'Inactive';
-        if ($request->status==1)
-        {
-            $obj->status = $request->status;
-            $status = 'Active';
-        }
-        /* Ends for request on add-user */
 
         $obj->fill($request->all());
-        $obj->status = 0;
-        // skip verify mobile
-        $obj->mobile_verify = 1;
-        $obj->password = bcrypt($request->password);
-        $obj->plain_password = $request->password;
 
-        if ($obj->save())
-        {
+        if(isset($request->id)){
+            $data = Employee::find($request->id);
+            $data->name=$request->name;
+            $data->email=$request->email;
+            $data->phone=$request->phone;
+            $data->address=$request->address;
+            // $data->created_at=
+            $data->save();
 
-            $email_temp = DB::table('email_settings')->select('registration_subject','registration_content')->where('user_id', Auth::user()->id)->first();
+            return view('admin.employees.list');
 
-            $subject = $email_temp->registration_subject;
-            $content = $email_temp->registration_content;
-
-            $content = str_replace('%email%', $request->email, $content);
-            $content = str_replace('%name%', $request->name, $content);
-            $content = str_replace('%status%', $status, $content);
-            $content = str_replace('%password%', $request->password, $content);
-
-            $this->notification_to_email = $request->email;
-            $this->notification_subject = $subject;
-
-            $data = array('email' => $request->email, 'content' => $content, 'subject' => $subject );
-
-            Mail::send('admin.user.email_notification', $data, function($msg){
-                $msg->subject($this->notification_subject);
-                $msg->to($this->notification_to_email);
-            });
-            echo json_encode(array('msg'=>1));
         }else{
-            echo json_encode(array('msg'=>0));
+            $data = Employee::insert([
+                'name'=>$request->input('name'),
+                'email'=>$request->input('email'),
+                'phone'=>$request->input('phone'),
+                'address'=>$request->input('address')
+            ]);
+            return view('admin.employees.list');
         }
     }
 
