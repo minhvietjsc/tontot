@@ -90,11 +90,11 @@ if(isset($_REQUEST['image']))
           </div>
 
           <div class="listing-filter">
-            <div class="pull-left col-xs-6">
+            <div class="pull-left col-xs-6 col-xs-12">
               <h2>Quảng cáo nổi bật</h2>
             </div>
-            <div class="pull-right col-xs-6 text-right listing-view-action">
-              <span>Chế độ xem : </span>
+            <div class="pull-right col-xs-6 col-xs-12 text-right listing-view-action">
+              <p>Chế độ xem : </p>
               <span class="list-view active"><i class="icon-th 2x"></i></span>
               <span class="compact-view"><i class=" icon-th-list 2x"></i></span>
               <span class="grid-view "><i class=" icon-th-large 2x" style="margin-right: 4px"></i></span>
@@ -219,7 +219,7 @@ if(isset($_REQUEST['image']))
                 <a href="#"> Khẩn cấp</a>
               </div>
               @endif
-              <div class="col-md-2 no-padding photobox">
+              <div class="col-md-2 col-xs-6 col-sm-6 no-padding photobox">
                 <div class="add-image"><span class="photo-count">
                   <i class="fa fa-camera"></i> {{ count($v->ad_images) }} </span>
                   <a href="{{url('tin/'.urlencode(str_slug(str_replace(' - ', '', $v->title.'-'.$v->id), '-')))}}">
@@ -228,13 +228,13 @@ if(isset($_REQUEST['image']))
                 </div>
               </div>
               <!--/.photobox-->
-              <div class="col-sm-8 add-desc-box col-md-7">
+              <div class="col-sm-8 col-xs-6 add-desc-box col-md-7">
                 <div class="ads-details">
                   <h6 class="add-title"><a href="{{url('tin/'.urlencode(str_slug(str_replace(' - ', '', $v->title.'-'.$v->id), '-')))}}">{{ ucfirst($v->title) }} </a></h6>
                   <span class="info-row">
                     <!--<span class="add-type business-ads tooltipHere" data-toggle="tooltip" data-placement="right" title="Business Ads">B </span>-->
                     <span class="date"><i class=" icon-clock"> </i> {{ $v->created_at->diffForHumans() }} </span>
-                    - <span class="category">{{ $v->category->name }} </span>-
+                    - <!-- <span class="category">{{ $v->category->name }} </span> -->-
                     <span class="item-location"><i class="fa fa-map-marker"></i> {{ ucwords( $v->city->title ) }}</span>
                     - <span data-toggle="tooltip" data-placement="top" title="" data-original-title="{{ floor($v->visit/2) }} Xem quảng cáo "><i class="fa fa-eye" aria-hidden="true"> {{ floor($v->visit/2) }}</i></span>
                     - <span data-toggle="tooltip" data-placement="top" title="" data-original-title="{{ floor($v->message) }} Tin nhắn "><i class="fa fa-envelope-o" aria-hidden="true"> {{ floor($v->message) }}</i></span>

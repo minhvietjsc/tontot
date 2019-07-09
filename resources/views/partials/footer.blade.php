@@ -19,6 +19,12 @@
                             @if($setting->facebook !='')
                                 <li><a href="{{ $setting->facebook }}" target="_blank"><div class="facebook-hover social-slide imagesize"></div></a></li>
                             @endif
+                            @if($setting->zalo !='')
+                                <li><a href="{{ $setting->zalo }}" target="_blank"><div class="zalo-hover social-slide imagesize"></div></a></li>
+                            @endif
+                             @if($setting->youtube !='')
+                                <li><a href="{{ $setting->youtube }}" target="_blank"><div class="youtube-hover social-slide imagesize"></div></a></li>
+                            @endif
                             @if($setting->twitter !='')
                                 <li><a href="{{ $setting->twitter }}" target="_blank"><div class="twitter-hover social-slide imagesize"></div></a></li>
                             @endif

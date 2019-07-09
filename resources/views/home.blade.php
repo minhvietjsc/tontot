@@ -176,7 +176,7 @@
                 
                 <div class="row cat-item-ads">  
                     @foreach($cat['ads'] as $key => $ad)
-                    <div class="col-md-3 col-sm-3 col-xs-12 multiple text-center ads-item">
+                    <div class="col-md-3 col-sm-3 col-xs-6 multiple text-center ads-item">
                         <a title="{{ ucfirst($ad->title) }}" style="margin: auto; display: inline-block;" href="{{url('tin/'.urlencode(str_slug(str_replace(' - ', '', $ad->title.'-'.$ad->id), '-')))}}">
                         <img class="img-responsive" src="{{ asset('assets/images/listings/'.$ad->image) }}" alt="img">
                         <h5 class="add-title">

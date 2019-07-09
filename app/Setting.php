@@ -50,7 +50,9 @@ class Setting extends Authenticatable
         'twitter',
         'googleplus',
         'social_links',
-        'mobile_verify'
+        'mobile_verify',
+        'zalo',
+        'youtube'
     ];
 
     /**
