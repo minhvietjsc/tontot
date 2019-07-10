@@ -65,8 +65,7 @@
                             data-toggle="dropdown" aria-expanded="false"> Tùy chọn <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu">
-                            <li onclick="$('#catForm').submit()"><a href="javascript:void(0);"><i
-                                class="fa fa-trash" aria-hidden="true"></i> Xóa mục đã chọn </a></li>
+                            <li onclick="$('#catForm').submit()"><a href="javascript:void(0);"><i class="fa fa-trash" aria-hidden="true"></i> Xóa mục đã chọn </a></li>
                             </ul>
                         </div>
                         <div class="col-xs-12 bg-white product-listing "><!--   LIST       -->

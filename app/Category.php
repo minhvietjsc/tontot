@@ -23,6 +23,7 @@ class Category extends \Eloquent
     use NestableTrait;
 
 
+    protected $table = 'categories';
 
     protected $parent = 'parent_id';
 

@@ -173,7 +173,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('load-my-orders', 'AjaxController@loadMyOrders');
     Route::get('load-users', 'AjaxController@loadUsers')->name('load-users');
     Route::get('load-employee', 'AjaxController@loadEmployee')->name('load-employee');
-    Route::post('delete-category', 'AjaxController@deleteCategory');
+    Route::post('delete-category', 'AjaxController@deleteCategory')->name('delete-category');
     Route::post('delete', 'AjaxController@delete')->name('delete');
     Route::post('change-status', 'AjaxController@changeStatus');
     Route::get('load-ads-list', 'AjaxController@loadAdsLists');
