@@ -1,184 +1,154 @@
-﻿/**
+/**
  * @license Copyright (c) 2003-2019, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
  */
 
-/**
- * @fileOverview The Image plugin.
- */
+'use strict';
 
 ( function() {
+	var uniqueNameCounter = 0,
+		// Black rectangle which is shown before the image is loaded.
+		loadingImage = 'data:image/gif;base64,R0lGODlhDgAOAIAAAAAAAP///yH5BAAAAAAALAAAAAAOAA4AAAIMhI+py+0Po5y02qsKADs=';
 
-	CKEDITOR.plugins.add( 'image', {
-		requires: 'dialog',
-		// jscs:disable maximumLineLength
-		lang: 'af,ar,az,bg,bn,bs,ca,cs,cy,da,de,de-ch,el,en,en-au,en-ca,en-gb,eo,es,es-mx,et,eu,fa,fi,fo,fr,fr-ca,gl,gu,he,hi,hr,hu,id,is,it,ja,ka,km,ko,ku,lt,lv,mk,mn,ms,nb,nl,no,oc,pl,pt,pt-br,ro,ru,si,sk,sl,sq,sr,sr-latn,sv,th,tr,tt,ug,uk,vi,zh,zh-cn', // %REMOVE_LINE_CORE%
-		// jscs:enable maximumLineLength
-		icons: 'image', // %REMOVE_LINE_CORE%
-		hidpi: true, // %REMOVE_LINE_CORE%
-		init: function( editor ) {
-			var pluginName = 'image';
+	// Returns number as a string. If a number has 1 digit only it returns it prefixed with an extra 0.
+	function padNumber( input ) {
+		if ( input <= 9 ) {
+			input = '0' + input;
+		}
 
-			// Abort when Easyimage or Image2 are to be loaded since this plugins
-			// share the same functionality (#1791).
-			if ( editor.plugins.detectConflict( pluginName, [ 'easyimage', 'image2' ] ) ) {
-				return;
-			}
+		return String( input );
+	}
 
-			// Register the dialog.
-			CKEDITOR.dialog.add( pluginName, this.path + 'dialogs/image.js' );
+	// Returns a unique image file name.
+	function getUniqueImageFileName( type ) {
+		var date = new Date(),
+			dateParts = [ date.getFullYear(), date.getMonth() + 1, date.getDate(), date.getHours(), date.getMinutes(), date.getSeconds() ];
 
-			var allowed = 'img[alt,!src]{border-style,border-width,float,height,margin,margin-bottom,margin-left,margin-right,margin-top,width}',
-				required = 'img[alt,src]';
+		uniqueNameCounter += 1;
 
-			if ( CKEDITOR.dialog.isTabEnabled( editor, pluginName, 'advanced' ) )
-				allowed = 'img[alt,dir,id,lang,longdesc,!src,title]{*}(*)';
+		return 'image-' + CKEDITOR.tools.array.map( dateParts, padNumber ).join( '' ) + '-' + uniqueNameCounter + '.' + type;
+	}
 
-			// Register the command.
-			editor.addCommand( pluginName, new CKEDITOR.dialogCommand( pluginName, {
-				allowedContent: allowed,
-				requiredContent: required,
-				contentTransformations: [
-					[ 'img{width}: sizeToStyle', 'img[width]: sizeToAttribute' ],
-					[ 'img{float}: alignmentToStyle', 'img[align]: alignmentToAttribute' ]
-				]
-			} ) );
+	CKEDITOR.plugins.add( 'uploadimage', {
+		requires: 'uploadwidget',
 
-			// Register the toolbar button.
-			editor.ui.addButton && editor.ui.addButton( 'Image', {
-				label: editor.lang.common.image,
-				command: pluginName,
-				toolbar: 'insert,10'
-			} );
-
-			editor.on( 'doubleclick', function( evt ) {
-				var element = evt.data.element;
-
-				if ( element.is( 'img' ) && !element.data( 'cke-realelement' ) && !element.isReadOnly() )
-					evt.data.dialog = 'image';
-			} );
-
-			// If the "menu" plugin is loaded, register the menu items.
-			if ( editor.addMenuItems ) {
-				editor.addMenuItems( {
-					image: {
-						label: editor.lang.image.menu,
-						command: 'image',
-						group: 'image'
-					}
-				} );
-			}
-
-			// If the "contextmenu" plugin is loaded, register the listeners.
-			if ( editor.contextMenu ) {
-				editor.contextMenu.addListener( function( element ) {
-					if ( getSelectedImage( editor, element ) )
-						return { image: CKEDITOR.TRISTATE_OFF };
-				} );
-			}
+		onLoad: function() {
+			CKEDITOR.addCss(
+				'.cke_upload_uploading img{' +
+					'opacity: 0.3' +
+				'}'
+			);
 		},
-		afterInit: function( editor ) {
-			// Abort when Image2 is to be loaded since both plugins
-			// share the same button, command, etc. names (https://dev.ckeditor.com/ticket/11222).
-			if ( editor.plugins.image2 )
+
+		isSupportedEnvironment: function() {
+			return CKEDITOR.plugins.clipboard.isFileApiSupported;
+		},
+
+		init: function( editor ) {
+			// Do not execute this paste listener if it will not be possible to upload file.
+			if ( !this.isSupportedEnvironment() ) {
 				return;
-
-			// Customize the behavior of the alignment commands. (https://dev.ckeditor.com/ticket/7430)
-			setupAlignCommand( 'left' );
-			setupAlignCommand( 'right' );
-			setupAlignCommand( 'center' );
-			setupAlignCommand( 'block' );
-
-			function setupAlignCommand( value ) {
-				var command = editor.getCommand( 'justify' + value );
-				if ( command ) {
-					if ( value == 'left' || value == 'right' ) {
-						command.on( 'exec', function( evt ) {
-							var img = getSelectedImage( editor ),
-								align;
-							if ( img ) {
-								align = getImageAlignment( img );
-								if ( align == value ) {
-									img.removeStyle( 'float' );
-
-									// Remove "align" attribute when necessary.
-									if ( value == getImageAlignment( img ) )
-										img.removeAttribute( 'align' );
-								} else {
-									img.setStyle( 'float', value );
-								}
-
-								evt.cancel();
-							}
-						} );
-					}
-
-					command.on( 'refresh', function( evt ) {
-						var img = getSelectedImage( editor ),
-							align;
-						if ( img ) {
-							align = getImageAlignment( img );
-
-							this.setState(
-							( align == value ) ? CKEDITOR.TRISTATE_ON : ( value == 'right' || value == 'left' ) ? CKEDITOR.TRISTATE_OFF : CKEDITOR.TRISTATE_DISABLED );
-
-							evt.cancel();
-						}
-					} );
-				}
 			}
+
+			var fileTools = CKEDITOR.fileTools,
+				uploadUrl = fileTools.getUploadUrl( editor.config, 'image' );
+
+			if ( !uploadUrl ) {
+				return;
+			}
+
+			// Handle images which are available in the dataTransfer.
+			fileTools.addUploadWidget( editor, 'uploadimage', {
+				supportedTypes: /image\/(jpeg|png|gif|bmp)/,
+
+				uploadUrl: uploadUrl,
+
+				fileToElement: function() {
+					var img = new CKEDITOR.dom.element( 'img' );
+					img.setAttribute( 'src', loadingImage );
+					return img;
+				},
+
+				parts: {
+					img: 'img'
+				},
+
+				onUploading: function( upload ) {
+					// Show the image during the upload.
+					this.parts.img.setAttribute( 'src', upload.data );
+				},
+
+				onUploaded: function( upload ) {
+					// Width and height could be returned by server (https://dev.ckeditor.com/ticket/13519).
+					var $img = this.parts.img.$,
+						width = upload.responseData.width || $img.naturalWidth,
+						height = upload.responseData.height || $img.naturalHeight;
+
+					// Set width and height to prevent blinking.
+					this.replaceWith( '<img src="' + upload.url + '" ' +
+						'width="' + width + '" ' +
+						'height="' + height + '">' );
+				}
+			} );
+
+			// Handle images which are not available in the dataTransfer.
+			// This means that we need to read them from the <img src="data:..."> elements.
+			editor.on( 'paste', function( evt ) {
+				// For performance reason do not parse data if it does not contain img tag and data attribute.
+				if ( !evt.data.dataValue.match( /<img[\s\S]+data:/i ) ) {
+					return;
+				}
+
+				var data = evt.data,
+					// Prevent XSS attacks.
+					tempDoc = document.implementation.createHTMLDocument( '' ),
+					temp = new CKEDITOR.dom.element( tempDoc.body ),
+					imgs, img, i;
+
+				// Without this isReadOnly will not works properly.
+				temp.data( 'cke-editable', 1 );
+
+				temp.appendHtml( data.dataValue );
+
+				imgs = temp.find( 'img' );
+
+				for ( i = 0; i < imgs.count(); i++ ) {
+					img = imgs.getItem( i );
+
+					// Assign src once, as it might be a big string, so there's no point in duplicating it all over the place.
+					var imgSrc = img.getAttribute( 'src' ),
+						// Image have to contain src=data:...
+						isDataInSrc = imgSrc && imgSrc.substring( 0, 5 ) == 'data:',
+						isRealObject = img.data( 'cke-realelement' ) === null;
+
+					// We are not uploading images in non-editable blocs and fake objects (https://dev.ckeditor.com/ticket/13003).
+					if ( isDataInSrc && isRealObject && !img.data( 'cke-upload-id' ) && !img.isReadOnly( 1 ) ) {
+						// Note that normally we'd extract this logic into a separate function, but we should not duplicate this string, as it might
+						// be large.
+						var imgFormat = imgSrc.match( /image\/([a-z]+?);/i ),
+							loader;
+
+						imgFormat = ( imgFormat && imgFormat[ 1 ] ) || 'jpg';
+
+						loader = editor.uploadRepository.create( imgSrc, getUniqueImageFileName( imgFormat ) );
+						loader.upload( uploadUrl );
+
+						fileTools.markElement( img, 'uploadimage', loader.id );
+
+						fileTools.bindNotifications( editor, loader );
+					}
+				}
+
+				data.dataValue = temp.getHtml();
+			} );
 		}
 	} );
 
-	function getSelectedImage( editor, element ) {
-		if ( !element ) {
-			var sel = editor.getSelection();
-			element = sel.getSelectedElement();
-		}
-
-		if ( element && element.is( 'img' ) && !element.data( 'cke-realelement' ) && !element.isReadOnly() )
-			return element;
-	}
-
-	function getImageAlignment( element ) {
-		var align = element.getStyle( 'float' );
-
-		if ( align == 'inherit' || align == 'none' )
-			align = 0;
-
-		if ( !align )
-			align = element.getAttribute( 'align' );
-
-		return align;
-	}
-
+	/**
+	 * The URL where images should be uploaded.
+	 *
+	 * @since 4.5.0
+	 * @cfg {String} [imageUploadUrl='' (empty string = disabled)]
+	 * @member CKEDITOR.config
+	 */
 } )();
-
-/**
- * Determines whether dimension inputs should be automatically filled when the image URL changes in the Image plugin dialog window.
- *
- *		config.image_prefillDimensions = false;
- *
- * @since 4.5.0
- * @cfg {Boolean} [image_prefillDimensions=true]
- * @member CKEDITOR.config
- */
-
-/**
- * Whether to remove links when emptying the link URL field in the Image dialog window.
- *
- *		config.image_removeLinkByEmptyURL = false;
- *
- * @cfg {Boolean} [image_removeLinkByEmptyURL=true]
- * @member CKEDITOR.config
- */
-CKEDITOR.config.image_removeLinkByEmptyURL = true;
-
-/**
- * Padding text to set off the image in the preview area.
- *
- *		config.image_previewText = CKEDITOR.tools.repeat( '___ ', 100 );
- *
- * @cfg {String} [image_previewText='Lorem ipsum dolor...' (placeholder text)]
- * @member CKEDITOR.config
- */
