@@ -574,8 +574,7 @@ class AjaxController extends Controller
         $category = $request->cat_id;
 
         foreach ($category as $item) {
-            $id = Category::where('id', $item)->select('parent_id')->first();
-            $result = $this->getTree($item);
+            $id = Category::where('id', $item)->delete();
         }
         echo 1;
     }
